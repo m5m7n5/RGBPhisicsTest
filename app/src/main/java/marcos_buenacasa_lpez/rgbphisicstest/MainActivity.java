@@ -2,6 +2,8 @@ package marcos_buenacasa_lpez.rgbphisicstest;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
@@ -35,27 +37,27 @@ public class MainActivity extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        viewHeight = size.x;
-        viewWidth = size.y;
+        viewHeight = size.y;
+        viewWidth = size.x;
         /*
         Matriz del nivel
          */
-        int[][] matrix = {//26x15
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        int[][] matrix = {//15x26
+                {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12},
+                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 0, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 14, 0, 0, 12},
+                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 12},
+                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 12},
+                {12, 0, 0, 0, 0, 0, 14, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 12, 12, 0, 0, 0, 0, 0, 12},
+                {12, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 0, 0, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 12},
+                {12, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12}
         };
         /*
         Creo el motor e inicializo el nivel
@@ -67,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
             picsize = viewHeight/15;
         }
         ArrayList<Drawable> pics = new ArrayList<Drawable>();
-        pics.add(getResources().getDrawable(R.drawable.red_player));
-        m = new Motor(3, 0, matrix, picsize,pics);
-        m.iniLevel();
+        loadResources(pics);
+        m = new Motor(10, 0, matrix, picsize,pics);
+        m.iniLevel(viewWidth,viewHeight);
 
         mainview.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -80,16 +82,21 @@ public class MainActivity extends AppCompatActivity {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
                     if(viewHeight/2<y){
                         if(viewWidth/2<x){
+                            //Abajo izquierda
                             m.playerAction(1);
                         }else{
+                            //Abajo derecha
                             m.playerAction(2);
                         }
                     }else{
                         if((viewWidth)/3<x && x<=(2*viewWidth)/3){
+                            //Arraiba centro
                             m.playerAction(3);
                         }else if((2*viewWidth)/3<x){
+                            //Arriba derecha
                             m.playerAction(4);
                         }else if(0<x && x<=(viewWidth/3)){
+                            //Arriba izquierda
                             m.playerAction(5);
                         }
                     }
@@ -122,6 +129,24 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }.start();
+    }
+
+    private void loadResources(ArrayList<Drawable> pics) {
+        pics.add(getResources().getDrawable(R.drawable.red_player));
+        pics.add(getResources().getDrawable(R.drawable.green_player));
+        pics.add(getResources().getDrawable(R.drawable.blue_player));
+        pics.add(getResources().getDrawable(R.drawable.yellow_player));
+        pics.add(getResources().getDrawable(R.drawable.button));
+        pics.add(getResources().getDrawable(R.drawable.spikes));
+        pics.add(getResources().getDrawable(R.drawable.door));
+        pics.add(getResources().getDrawable(R.drawable.red_companion_cube));
+        pics.add(getResources().getDrawable(R.drawable.green_companion_cube));
+        pics.add(getResources().getDrawable(R.drawable.blue_companion_cube));
+        pics.add(getResources().getDrawable(R.drawable.yellow_companion_cube));
+        pics.add(getResources().getDrawable(R.drawable.ground_block1));
+        pics.add(getResources().getDrawable(R.drawable.ground_block2));
+        pics.add(getResources().getDrawable(R.drawable.cloud_block));
+        pics.add(getResources().getDrawable(R.drawable.dirt_block));
     }
 
     class levelView extends View {
