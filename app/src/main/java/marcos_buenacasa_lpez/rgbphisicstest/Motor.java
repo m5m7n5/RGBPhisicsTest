@@ -28,7 +28,7 @@ public class Motor {
     |
     v
     X
-     */
+    */
     private int gravityx;
     private int gravityy;
     private Canvas ground;
@@ -160,7 +160,7 @@ public class Motor {
         }
     }
 */
-    private boolean staticCollitions(){
+    private void staticCollitions(){
         //Verdadero if
          /*
         0--1
@@ -174,7 +174,8 @@ public class Motor {
                 matrix[(int)(player.getx()+0.99)][(int)(player.gety())]>groundBlockConstant};
 
         if(player.getVely()>0 && player.getVelx()>0){
-            //rigth-bot velocity arrow
+            //******************************
+            //***rigth-bot velocity arrow***
             //DONE
             if(vertex[1] && vertex[3]){
                 player.setPos((int)(player.getx()),(int)(player.gety()));
@@ -189,10 +190,25 @@ public class Motor {
                     player.setVel(0,0);
                     player.stopJumping();
                 }
+            }else if(vertex[2]){
+                //Caso esquina
+                if(((player.getx()+0.99)-(int)(player.getx()+0.99))>((player.gety()+0.99)-(int)(player.gety()+0.99))){
+                    player.setPos(player.getx(),(int)player.gety());
+                    player.setVel(player.getVelx(),0);
+                }else{
+                    player.setPos((int)player.getx(),player.gety());
+                    if(player.isJumping()){
+                        player.setVel(0,0);
+                        player.stopJumping();
+                    }else{
+                        player.setVel(0,player.getVely());
+                    }
+                }
             }
 
         }else if(player.getVely()>0 && player.getVelx()<0){
-            //rigth-top velocity arrow
+            //******************************
+            //***rigth-top velocity arrow***
             //DONE
             if(vertex[0] && vertex[2]){
                 player.setPos((int)(player.getx()),(int)(player.gety()));
@@ -202,18 +218,29 @@ public class Motor {
             }else if(vertex[2]){
                 player.setPos((player.getx()),(int)(player.gety()));
                 player.setVel(player.getVelx(),0);
+            }else if(vertex[1]){
+                //Caso esquina
+                if((int)(player.getx()+0.99)-(player.getx())>(player.gety()+0.99)-(int)(player.gety()+0.99)){
+                    player.setPos(player.getx(),(int)player.gety());
+                    player.setVel(player.getVelx(),0);
+                }else{
+                    player.setPos((int)(player.getx()+0.99),player.gety());
+                    player.setVel(0,player.getVely());
+                }
             }
 
         }else if(player.getVely()>0 && player.getVelx()==0){
-            //rigth velocity arrow
+            //******************************
+            //***rigth velocity arrow***
             //DONE
             if(vertex[1]){
                 player.setPos((int)(player.getx()),(int)(player.gety()));
             }
 
         }else if(player.getVely()<0 && player.getVelx()>0){
-            //left-bot velocity arrow
-
+            //******************************
+            //***left-bot velocity arrow***
+            //DONE
             if(vertex[0] && vertex[2]){
                 player.setPos((int)(player.getx()),(int)(player.gety()+1));
                 player.setVel(0,0);
@@ -227,10 +254,25 @@ public class Motor {
                     player.setVel(0,0);
                     player.stopJumping();
                 }
+            }else if(vertex[3]){
+                //Caso esquina
+                if(((player.getx()+0.99)-(int)(player.getx()+0.99))>(int)(player.gety()+0.99)-(player.gety())){
+                    player.setPos(player.getx(),(int)(player.gety()+0.99));
+                    player.setVel(player.getVelx(),0);
+                }else{
+                    player.setPos((int)player.getx(),player.gety());
+                    if(player.isJumping()){
+                        player.setVel(0,0);
+                        player.stopJumping();
+                    }else{
+                        player.setVel(0,player.getVely());
+                    }
+                }
             }
 
         }else if(player.getVely()<0 && player.getVelx()<0){
-            //left-top velocity arrow
+            //******************************
+            //***left-top velocity arrow***
             if(vertex[1] && vertex[3]){
                 player.setPos((int)(player.getx()+1),(int)(player.gety()));
             }else if(vertex[1]){
@@ -239,17 +281,29 @@ public class Motor {
             }else if(vertex[3]){
                 player.setPos((player.getx()),(int)(player.gety()+1));
                 player.setVel(player.getVelx(),0);
+            }else if(vertex[0]){
+                //Caso esquina
+                if(((int)(player.getx()+0.99)-player.getx())>(int)(player.gety()+0.99)-player.gety()){
+                    player.setPos(player.getx(),(int)(player.gety()+0.99));
+                    player.setVel(player.getVelx(),0);
+                }else{
+                    player.setPos((int)(player.getx()+0.99),(player.gety()));
+                    player.setVel(0,player.getVely());
+                }
             }
 
         }else if(player.getVely()<0 && player.getVelx()==0){
-            //left velocity arrow
+            //******************************
+            //***left velocity arrow***
             //DONE
             if(vertex[0]){
                 player.setPos((int)(player.getx()),(int)(player.gety()+1));
             }
 
         }else if(player.getVely()==0 && player.getVelx()>0){
-            //bot velocity arrow
+            //******************************
+            //***bot velocity arrow***
+            //DONE
             if(vertex[3]){
                 player.setPos((int)(player.getx()),(player.gety()));
                 player.setVel(0,0);
@@ -261,7 +315,9 @@ public class Motor {
             }
 
         }else if(player.getVely()==0 && player.getVelx()<0){
-            //top velociti arrow
+            //******************************
+            //***top velociti arrow***
+            //DONE
             if(vertex[0]){
                 player.setPos((int)(player.getx())+1,(player.gety()));
                 player.setVel(0,0);
@@ -271,29 +327,5 @@ public class Motor {
             }
 
         }
-
-
-        /*
-        if(player.getVely()>0 && matrix[(int)(player.getx())][(int)(player.gety()+1)]>groundBlockConstant){
-            player.setPos((int)player.getx(),(int)player.gety());
-            player.stopJumping();
-            return true;
-        }else if(player.getVely()<0 && matrix[(int)(player.getx())][(int)player.gety()]>groundBlockConstant){
-            player.setPos((int)(player.getx()),(int)(player.gety()+1));
-            player.stopJumping();
-            return true;
-        }
-
-        if(player.getVelx()>0 && matrix[(int)(player.getx())+1][(int)(player.gety())]>groundBlockConstant){
-            player.setPos((int)player.getx(),player.gety());
-            player.stopJumping();
-            return true;
-        }else if(player.getVelx()<0 && matrix[(int)(player.getx())][(int)(player.gety())]>groundBlockConstant){
-            player.setPos(player.getx()+1,player.gety());
-            player.stopJumping();
-            return true;
-        }
-        */
-        return false;
     }
 }
