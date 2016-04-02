@@ -44,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
          */
         int[][] matrix = {//15x26
                 {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12},
-                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 0, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 14, 0, 0, 12},
-                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 12},
-                {12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 12},
-                {12, 0, 0, 0, 0, 0, 14, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 12, 12, 0, 0, 0, 0, 0, 12},
-                {12, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 0, 0, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 12},
-                {12, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 0, 0, 0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
-                {12, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12},
+                {12, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 13, 13, 13, 13, 00, 00, 00, 00, 00, 00, 00, 04, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 13, 13, 13, 13, 00, 00, 00, 00, 00, 00, 14, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 14, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 14, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 00, 00, 00, 00, 14, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 14, 00, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 14, 13, 13, 13, 13, 00, 00, 00, 00, 00, 00, 00, 12, 12, 00, 00, 00, 00, 00, 12},
+                {12, 00, 15, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 00, 15, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 00, 14, 14, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 03, 00, 00, 00, 13, 13, 00, 00, 00, 12},
+                {12, 00, 00, 00, 00, 15, 00, 00, 00, 00, 00, 00, 00, 00, 00, 13, 13, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 13, 00, 02, 00, 00, 00, 00, 13, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 00, 00, 13, 13, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12, 13, 14, 15, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
                 {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12}
         };
         /*
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ArrayList<Drawable> pics = new ArrayList<Drawable>();
         loadResources(pics);
-        m = new Motor(10, 0, matrix, picsize,pics);
+        m = new Motor(15, matrix, picsize,pics,4,1);
         m.iniLevel(viewWidth,viewHeight);
 
         mainview.setOnTouchListener(new View.OnTouchListener() {
@@ -80,29 +80,106 @@ public class MainActivity extends AppCompatActivity {
                 float y = event.getY();
                 v.invalidate();
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    if(viewHeight/2<y){
-                        if(viewWidth/2<x){
-                            //Abajo izquierda
-                            m.playerAction(1);
-                        }else{
-                            //Abajo derecha
-                            m.playerAction(2);
-                        }
-                    }else{
-                        if((viewWidth)/3<x && x<=(2*viewWidth)/3){
-                            //Arraiba centro
-                            m.playerAction(3);
-                        }else if((2*viewWidth)/3<x){
-                            //Arriba derecha
-                            m.playerAction(4);
-                        }else if(0<x && x<=(viewWidth/3)){
-                            //Arriba izquierda
-                            m.playerAction(5);
-                        }
+                    switch(m.getOrientation()) {
+                        case 1:
+                            if (viewHeight / 2 < y) {
+                                if (viewWidth / 3 > x) {
+                                    //Abajo izquierda
+                                    m.motorAction(2);
+                                } else if ((2 * viewWidth) / 3 < x) {
+                                    //Abajo derecha
+                                    m.motorAction(1);
+                                } else if((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3){
+                                    //Ejecutar cambio de rotacion
+                                    m.motorAction(6);
+                                }
+                            } else {
+                                if ((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3) {
+                                    //Arraiba centro
+                                    m.motorAction(3);
+                                } else if ((2 * viewWidth) / 3 < x) {
+                                    //Arriba derecha
+                                    m.motorAction(4);
+                                } else if (x <= (viewWidth / 3)) {
+                                    //Arriba izquierda
+                                    m.motorAction(5);
+                                }
+                            }
+                            break;
+                        case 2:
+                            if(viewHeight/3 > y){
+                                if(viewWidth/2 > x){
+                                    m.motorAction(4);
+                                }else{
+                                    m.motorAction(1);
+                                }
+                            }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
+                                if(viewWidth/2 > x){
+                                    m.motorAction(3);
+                                }else{
+                                    m.motorAction(6);
+                                }
+                            }else if((2*viewHeight)/3 < y){
+                                if(viewWidth/2 > x){
+                                    m.motorAction(5);
+                                }else{
+                                    m.motorAction(2);
+                                }
+                            }
+                            break;
+                        case 3:
+                            if (viewHeight / 2 < y) {
+                                if (viewWidth / 3 > x) {
+                                    //Abajo izquierda
+                                    m.motorAction(4);
+                                } else if ((2 * viewWidth) / 3 < x) {
+                                    //Abajo derecha
+                                    m.motorAction(5);
+                                } else if((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3){
+                                    //Ejecutar cambio de rotacion
+                                    m.motorAction(3);
+                                }
+                            } else {
+                                if ((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3) {
+                                    //Arraiba centro
+                                    m.motorAction(6);
+                                } else if ((2 * viewWidth) / 3 < x) {
+                                    //Arriba derecha
+                                    m.motorAction(2);
+                                } else if (x <= (viewWidth / 3)) {
+                                    //Arriba izquierda
+                                    m.motorAction(1);
+
+                                }
+                            }
+                            break;
+                        case 4:
+                            if(viewHeight/3 > y){
+                                if(viewWidth/2 < x){
+                                    m.motorAction(5);
+                                }else{
+                                    m.motorAction(2);
+                                }
+                            }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
+                                if(viewWidth/2 < x){
+                                    m.motorAction(3);
+                                }else{
+                                    m.motorAction(6);
+                                }
+                            }else if((2*viewHeight)/3 < y){
+                                if(viewWidth/2 < x){
+                                    m.motorAction(4);
+                                }else{
+                                    m.motorAction(1);
+                                }
+                            }
+                            break;
+                        default:
+                            break;
                     }
                     return true;
                 }else if(event.getAction() == MotionEvent.ACTION_UP) {
-                    m.playerAction(0);
+                    m.motorAction(0);
                     return true;
                 }
                 return false;

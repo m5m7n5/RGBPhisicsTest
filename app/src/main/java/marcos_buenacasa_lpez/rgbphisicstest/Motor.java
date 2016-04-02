@@ -40,14 +40,40 @@ public class Motor {
     private ArrayList<Drawable> drawable;
     private int groundBlockConstant = 11;
     private Bitmap groundB;
+    private int id_color;
+    private int orientation;
+    private int gravityabsolutevalue;
 
-    public Motor(int gx,int gy, int [][] mat,int picsize,ArrayList<Drawable> drawable){
-        gravityx = gx;
-        gravityy = gy;
+    public Motor(int g, int [][] mat,int picsize,ArrayList<Drawable> drawable,int id_color,int orientation){
         matrix = mat;
         this.picsize = picsize;
         this.drawable = drawable;
         collidableList = new Collidable[15][26];
+        this.id_color = id_color;
+        this.orientation = orientation;
+        gravityabsolutevalue = g;
+        switch(orientation){
+            /*
+            1 down grav
+            2 right grav
+            3 top grav
+            4 left grav
+             */
+            case 1:
+                gravityx = g;
+                break;
+            case 2:
+                gravityy = g;
+                break;
+            case 3:
+                gravityx = (-1)*g;
+                break;
+            case 4:
+                gravityy = (-1)*g;
+                break;
+            default:
+                break;
+        }
     }
 
     public void iniLevel(int h,int w){
@@ -62,8 +88,10 @@ public class Motor {
                     case 2:
                     case 3:
                     case 4:
-                        collidableList[i][j] = new Player(i,j,1,1,matrix[i][j],0,0,drawable.get(matrix[i][j]-1));
-                        player = (Player) collidableList[i][j];
+                        collidableList[i][j] = new Player(i,j,1,1,matrix[i][j],0,0,drawable.get(matrix[i][j]-1),this.orientation);
+                        if(id_color == matrix[i][j]) {
+                            player = (Player) collidableList[i][j];
+                        }
                         break;
                     //Botones
                     case 5:
@@ -104,8 +132,8 @@ public class Motor {
     }
 
     public void phisics(int dt){
-        player.update(dt,gravityx,gravityy,1);
-        staticCollitions();
+        player.update(dt,gravityx,gravityy,orientation);
+        staticCollitions(player);
     }
 
     public void logic(){
@@ -121,13 +149,15 @@ public class Motor {
                 }
             }
         }
+        /*
         c.drawText(Double.toString(player.getx()),50,70,new Paint(Color.BLACK));
         c.drawText(Double.toString(player.gety()),50,90,new Paint(Color.BLACK));
         c.drawText(Double.toString(player.getVelx()),50,110,new Paint(Color.BLACK));
         c.drawText(Double.toString(player.getVely()),50,130,new Paint(Color.BLACK));
+        */
     }
 
-    public void playerAction(int action){
+    public void motorAction(int action){
         switch(action){
             case 1:
                 player.moveRight();
@@ -144,23 +174,17 @@ public class Motor {
             case 5:
                 player.jumpLeft();
                 break;
+            case 6:
+                this.changeOrientation(orientation+1);
+                break;
             default:
                 player.stopMoving();
                 break;
 
         }
     }
-    /*
-    private boolean checkCollition(Collidable first,Collidable second){
 
-        if(matrix[((player.gety()+5)/wblock)+1][p.getx()/wblock] == 0 && matrix[((player.gety()+5)/wblock)+1][(p.getx()/wblock)+1] == 0 ) {
-            p.setPos(p.getx(), p.gety() + 5);
-        }else{
-            p.setPos(p.getx(),((p.gety()+5)/wblock)*wblock);
-        }
-    }
-*/
-    private void staticCollitions(){
+    private void staticCollitions(Player player){
         //Verdadero if
          /*
         0--1
@@ -184,9 +208,15 @@ public class Motor {
             }else if(vertex[1]){
                 player.setPos((player.getx()),(int)(player.gety()));
                 player.setVel(player.getVelx(),0);
+                if(player.isJumping() && orientation == 2){
+                    player.setVel(0,0);
+                    player.stopJumping();
+                }
+
             }else if(vertex[3]){
                 player.setPos((int)(player.getx()),(player.gety()));
-                if(player.isJumping()){
+                player.setVel(0,player.getVely());
+                if(player.isJumping() && orientation == 1){
                     player.setVel(0,0);
                     player.stopJumping();
                 }
@@ -197,11 +227,10 @@ public class Motor {
                     player.setVel(player.getVelx(),0);
                 }else{
                     player.setPos((int)player.getx(),player.gety());
-                    if(player.isJumping()){
+                    player.setVel(0,player.getVely());
+                    if(player.isJumping() && !player.isMoving()){
                         player.setVel(0,0);
                         player.stopJumping();
-                    }else{
-                        player.setVel(0,player.getVely());
                     }
                 }
             }
@@ -214,7 +243,7 @@ public class Motor {
                 player.setPos((int)(player.getx()),(int)(player.gety()));
             }else if(vertex[0]){
                 player.setPos((int)(player.getx()+1),(player.gety()));
-                player.setVel(0,0);
+                player.setVel(0,player.getVely());
             }else if(vertex[2]){
                 player.setPos((player.getx()),(int)(player.gety()));
                 player.setVel(player.getVelx(),0);
@@ -250,7 +279,8 @@ public class Motor {
                 player.setVel(player.getVelx(),0);
             }else if(vertex[2]){
                 player.setPos((int)(player.getx()),(player.gety()));
-                if(player.isJumping()){
+                player.setVel(0,player.getVely());
+                if(player.isJumping() && orientation == 1){
                     player.setVel(0,0);
                     player.stopJumping();
                 }
@@ -261,11 +291,10 @@ public class Motor {
                     player.setVel(player.getVelx(),0);
                 }else{
                     player.setPos((int)player.getx(),player.gety());
-                    if(player.isJumping()){
+                    player.setVel(0,player.getVely());
+                    if(player.isJumping() && !player.isMoving()) {
                         player.setVel(0,0);
                         player.stopJumping();
-                    }else{
-                        player.setVel(0,player.getVely());
                     }
                 }
             }
@@ -277,7 +306,7 @@ public class Motor {
                 player.setPos((int)(player.getx()+1),(int)(player.gety()));
             }else if(vertex[1]){
                 player.setPos((int)(player.getx()+1),(player.gety()));
-                player.setVel(0,0);
+                player.setVel(0,player.getVely());
             }else if(vertex[3]){
                 player.setPos((player.getx()),(int)(player.gety()+1));
                 player.setVel(player.getVelx(),0);
@@ -326,6 +355,42 @@ public class Motor {
                 player.setVel(0,0);
             }
 
+        }
+    }
+
+    public int getOrientation(){
+        return orientation;
+    }
+    private void changeOrientation(int or){
+        if(or > 4 || or < 1){
+            or=(or%4);
+        }
+        orientation = or;
+        switch(or){
+            /*
+            1 down grav
+            2 right grav
+            3 top grav
+            4 left grav
+             */
+            case 1:
+                gravityx = gravityabsolutevalue;
+                gravityy = 0;
+                break;
+            case 2:
+                gravityx = 0;
+                gravityy = gravityabsolutevalue;
+                break;
+            case 3:
+                gravityx = (-1)*gravityabsolutevalue;
+                gravityy = 0;
+                break;
+            case 4:
+                gravityx = 0;
+                gravityy = (-1)*gravityabsolutevalue;
+                break;
+            default:
+                break;
         }
     }
 }
