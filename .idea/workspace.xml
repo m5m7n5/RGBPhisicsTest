@@ -39,12 +39,12 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4654088">
-              <caret line="161" column="33" selection-start-line="161" selection-start-column="33" selection-end-line="161" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.5687104">
+              <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3689#9058#0" expanded="true" />
-                <element signature="e#9057#9058#0" expanded="true" />
+                <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+                <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -54,15 +54,54 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Motor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="171" column="31" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
+              <caret line="369" column="5" selection-start-line="369" selection-start-column="5" selection-end-line="369" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#Motor#0;class#Motor#0" expanded="false" />
                 <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
                 <element signature="method#phisics#0;class#Motor#0" expanded="false" />
                 <element signature="method#logic#0;class#Motor#0" expanded="false" />
                 <element signature="method#draw#0;class#Motor#0" expanded="false" />
+                <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+                <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
                 <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+                <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+                <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Collidable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Collidable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+              <folding>
+                <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+                <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+                <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+                <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+                <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="104" column="24" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#update#0;class#Player#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,23 +113,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
-              <folding>
-                <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-                <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-                <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-                <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-                <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-                <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1616,8 +1638,8 @@
         <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ldltr-v21/values-ldltr-v21.xml" />
         <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-v23/values-v23.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Collidable.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/CompanionCube.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Collidable.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Motor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/MainActivity.java" />
@@ -1655,6 +1677,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1663,11 +1687,51 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RGBPhisicsTest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RGBPhisicsTest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RGBPhisicsTest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rgbphisicstest" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1975,12 +2039,12 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49677938" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19329074" sideWeight="0.5483092" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19329074" sideWeight="0.45169082" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1996805" sideWeight="0.5660225" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1996805" sideWeight="0.43397745" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1993,7 +2057,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.471246" sideWeight="0.47423512" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45846644" sideWeight="0.45813206" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2017,34 +2081,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="33" />
+      <option name="time" value="56" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
-          <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2055,12 +2104,22 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2070,7 +2129,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2080,12 +2143,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="28" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
           <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#update#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2096,8 +2155,8 @@
           <caret line="157" column="27" selection-start-line="157" selection-start-column="27" selection-end-line="157" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2108,12 +2167,22 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2123,7 +2192,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="38" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2133,12 +2206,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
           <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#update#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2160,8 +2229,8 @@
           <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2171,7 +2240,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2182,12 +2255,22 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2197,12 +2280,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#update#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2224,8 +2303,8 @@
           <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2235,7 +2314,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2246,12 +2329,22 @@
           <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2261,12 +2354,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#update#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2288,8 +2377,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2299,7 +2388,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2310,12 +2403,22 @@
           <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2325,12 +2428,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#update#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2352,8 +2451,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2363,7 +2462,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2374,12 +2477,22 @@
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2401,8 +2514,8 @@
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2412,7 +2525,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2423,12 +2540,22 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2450,8 +2577,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2461,7 +2588,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2501,20 +2632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/GameMakerAndroid/androidSDK/sources/android-23/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90229887">
-          <caret line="2075" column="0" selection-start-line="2075" selection-start-column="0" selection-end-line="2075" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/GameMakerAndroid/androidSDK/sources/android-23/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3591954">
-          <caret line="12434" column="0" selection-start-line="12434" selection-start-column="0" selection-end-line="12434" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2548,28 +2665,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Player.java">
+    <entry file="file://C:/GameMakerAndroid/androidSDK/sources/android-23/android/app/ActivityThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
-          <folding>
-            <element signature="method#moveRight#0;class#Player#0" expanded="false" />
-            <element signature="method#moveLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#stopMoving#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpRight#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpLeft#0;class#Player#0" expanded="false" />
-            <element signature="method#jumpUp#0;class#Player#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.3376206">
+          <caret line="2076" column="0" selection-start-line="2076" selection-start-column="0" selection-end-line="2076" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Collidable.java">
+    <entry file="file://C:/GameMakerAndroid/androidSDK/sources/android-23/android/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <caret line="7150" column="0" selection-start-line="7150" selection-start-column="0" selection-end-line="7150" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/GameMakerAndroid/androidSDK/sources/android-23/android/view/ViewGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5498392">
+          <caret line="1880" column="0" selection-start-line="1880" selection-start-column="0" selection-end-line="1880" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2581,30 +2697,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="24" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#update#0;class#Player#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Motor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="171" column="31" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
+          <caret line="369" column="5" selection-start-line="369" selection-start-column="5" selection-end-line="369" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Motor#0;class#Motor#0" expanded="false" />
             <element signature="method#iniLevel#0;class#Motor#0" expanded="false" />
             <element signature="method#phisics#0;class#Motor#0" expanded="false" />
             <element signature="method#logic#0;class#Motor#0" expanded="false" />
             <element signature="method#draw#0;class#Motor#0" expanded="false" />
+            <element signature="method#motorAction#0;class#Motor#0" expanded="false" />
+            <element signature="method#staticCollitions#0;class#Motor#0" expanded="false" />
             <element signature="method#changeOrientation#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftBotVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftTopVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#leftVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#rightVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#topVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#botVel#0;class#Motor#0" expanded="false" />
+            <element signature="method#calculateVertex#0;class#Motor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/Collidable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+          <folding>
+            <element signature="method#draw#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setVel#0;class#Collidable#0" expanded="false" />
+            <element signature="method#setPos#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateHV#0;class#Collidable#0" expanded="false" />
+            <element signature="method#rotateVH#0;class#Collidable#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/marcos_buenacasa_lpez/rgbphisicstest/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4654088">
-          <caret line="161" column="33" selection-start-line="161" selection-start-column="33" selection-end-line="161" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.5687104">
+          <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3689#9058#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
+            <element signature="method#loadResources#0;class#MainActivity#0" expanded="false" />
+            <element signature="class#levelView#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

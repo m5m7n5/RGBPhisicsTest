@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ArrayList<Drawable> pics = new ArrayList<Drawable>();
         loadResources(pics);
-        m = new Motor(15, matrix, picsize,pics,4,1);
+        m = new Motor(25, matrix, picsize,pics,4,1);
         m.iniLevel(viewWidth,viewHeight);
 
         mainview.setOnTouchListener(new View.OnTouchListener() {
@@ -191,13 +191,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        bucle = new CountDownTimer((long) Double.POSITIVE_INFINITY, 32) {
+        bucle = new CountDownTimer((long) Double.POSITIVE_INFINITY, 20) {
             public void onTick(long millisUntilFinished) {
 
-                m.phisics(32);
+                m.phisics(20);
                 m.logic();
                 mainview.invalidate();
-                gametime += 32;
+                gametime += 20;
 
             }
             public void onFinish() {

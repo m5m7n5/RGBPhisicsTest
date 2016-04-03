@@ -28,15 +28,14 @@ public class Collidable {
         this.velx = velx;
         this.vely = vely;
         this.picture = d;
-        maxvel = 20;
-        minvel = -20;
+        maxvel = 40;
+        minvel = -40;
     }
 
-    public void update(int dt,int gx,int gy){
-        x = x + velx*(1.0/dt);
-        y = y + vely*(1.0/dt);
-        velx = velx + gx*(1.0/dt);
-        vely = vely + gy*(1.0/dt);
+    public void update(int dt,int gx){
+        x = x + velx*(dt/1000.0);
+        y = y + vely*(dt/1000.0);
+        velx = velx + gx*(dt/1000.0);
         if(velx>maxvel){
             velx = maxvel;
         }else if(velx<minvel){
@@ -67,6 +66,7 @@ public class Collidable {
     public double gety(){
         return y;
     }
+
     public double getVelx(){
         return velx;
     }
@@ -78,5 +78,19 @@ public class Collidable {
     public void setPos(double x,double y){
         this.x=x;
         this.y=y;
+    }
+
+    public double[] rotateHV(double pos[]){
+        double[] newpos = {(-1)*(pos[1])+25,pos[0]};
+        return newpos;
+    }
+
+    public double[] rotateVH(double pos[]){
+        double[] newpos = {(-1)*(pos[1])+14,pos[0]};
+        return newpos;
+    }
+
+    public Drawable getPicture(){
+        return picture;
     }
 }
