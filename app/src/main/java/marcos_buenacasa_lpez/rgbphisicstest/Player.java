@@ -7,10 +7,12 @@ import android.graphics.drawable.Drawable;
  * Created by Marcos on 21/03/2016.
  */
 public class Player extends Collidable{
+
     private boolean jumping = false;
     private boolean moving = false;
     private int orientation;
     private int jumpheight = 8;
+
     public Player(int x, int y, int w, int h, int id_color, int velx, int vely, Drawable d,int orientation){
         super(x,y,w,h,id_color,velx,vely,d);
         this.orientation = orientation;

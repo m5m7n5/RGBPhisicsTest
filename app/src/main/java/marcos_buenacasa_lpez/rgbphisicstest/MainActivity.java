@@ -2,8 +2,6 @@ package marcos_buenacasa_lpez.rgbphisicstest;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
@@ -13,10 +11,23 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import java.util.List;
+
+
+
+
+
+
+
+
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private Motor m;
     private CountDownTimer bucle;
@@ -24,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private int gametime;
     private int viewHeight;
     private int viewWidth;
+    private float prevx,prevy = 0;
+    private float curx,cury= 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                     m.motorAction(1);
                                 } else if((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3){
                                     //Ejecutar cambio de rotacion
-                                    m.motorAction(6);
+                                    //m.motorAction(6);
                                 }
                             } else {
                                 if ((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3) {
@@ -117,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(viewWidth/2 > x){
                                     m.motorAction(3);
                                 }else{
-                                    m.motorAction(6);
+                                    //m.motorAction(6);
                                 }
                             }else if((2*viewHeight)/3 < y){
                                 if(viewWidth/2 > x){
@@ -142,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 if ((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3) {
                                     //Arraiba centro
-                                    m.motorAction(6);
+                                    //m.motorAction(6);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Arriba derecha
                                     m.motorAction(2);
@@ -164,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(viewWidth/2 < x){
                                     m.motorAction(3);
                                 }else{
-                                    m.motorAction(6);
+                                    //m.motorAction(6);
                                 }
                             }else if((2*viewHeight)/3 < y){
                                 if(viewWidth/2 < x){
@@ -181,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if(event.getAction() == MotionEvent.ACTION_UP) {
                     m.motorAction(0);
                     return true;
-                }
+            }
                 return false;
             }
         });
@@ -198,6 +212,24 @@ public class MainActivity extends AppCompatActivity {
                 m.logic();
                 mainview.invalidate();
                 gametime += 20;
+                if(curx > 5 && cury > -3 && cury < 3){
+                    if(m.getOrientation() != 1) {
+                        m.changeOrientation(1);
+                    }
+                }else if(curx<-5 && cury > -3 && cury < 3){
+                    if(m.getOrientation() != 3) {
+                        m.changeOrientation(3);
+                    }
+                }else if(cury > 5 && curx > -3 && curx < 3){
+                    if(m.getOrientation() != 2) {
+                        m.changeOrientation(2);
+                    }
+                }else if(cury < -5 && curx > -3 && curx < 3){
+                    if(m.getOrientation() != 4) {
+                        m.changeOrientation(4);
+                    }
+                }
+
 
             }
             public void onFinish() {
@@ -206,6 +238,44 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }.start();
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        List<Sensor> listSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        checkSensors(listSensors, sensorManager);
+
+    }
+
+    private void checkSensors(List<Sensor> listSensors, SensorManager sensorManager){
+        listSensors = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+        if (!listSensors.isEmpty()){
+            Sensor accelerometerSensor = listSensors.get(0);
+            sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int precision){}
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent){
+        // We need to synchronize the access because a principal thread
+        // can go through here.
+        synchronized (this){
+            Sensor accelerometer = sensorEvent.sensor;
+            if (accelerometer.getType() == Sensor.TYPE_ACCELEROMETER) {
+                // list "values" saves the data of the three axis of the accelerometer.
+                curx = sensorEvent.values[0];
+                cury = sensorEvent.values[1];
+
+                // We check if the code has been executed before. We inicialize the values.
+                if (prevx == 0 && prevy == 0) {
+                    prevx = curx;
+                    prevy = cury;
+                }
+
+                prevx = curx;
+                prevy = cury;
+            }
+        }
     }
 
     private void loadResources(ArrayList<Drawable> pics) {

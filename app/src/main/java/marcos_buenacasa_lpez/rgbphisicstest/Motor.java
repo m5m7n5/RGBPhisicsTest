@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public class Motor {
 
-
     /*
     PRECAUCIÓN
     X es el eje VERTICAL
@@ -229,7 +228,7 @@ public class Motor {
         return orientation;
     }
 
-    private void changeOrientation(int or){
+    public void changeOrientation(int or){
         if(or > 4){
             or=1;
         }else if(or < 1){
@@ -238,7 +237,8 @@ public class Motor {
         orientation = or;
         player.changeOrientation(or);
     }
-
+    /*************************************/
+    //Métodos de las colisiones estáticas//
     private void rightBotVel(Player player){
         boolean[] vertex = calculateVertex();
             if (vertex[1] && vertex[3]) {
