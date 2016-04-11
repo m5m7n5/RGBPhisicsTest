@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 {12, 00, 00, 14, 14, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 03, 00, 00, 00, 13, 13, 00, 00, 00, 12},
                 {12, 00, 00, 00, 00, 15, 00, 00, 00, 00, 00, 00, 00, 00, 00, 13, 13, 00, 00, 00, 00, 00, 00, 00, 00, 12},
                 {12, 00, 00, 00, 00, 00, 13, 00, 02, 00, 00, 00, 00, 13, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
-                {12, 00, 00, 00, 00, 00, 00, 00, 13, 13, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
+                {12, 00, 00, 00, 00, 00, 00, 00, 13, 13, 00, 00, 00, 5, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
                 {12, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12, 13, 14, 15, 00, 00, 00, 00, 00, 00, 00, 00, 00, 12},
                 {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12}
         };
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         ArrayList<Drawable> pics = new ArrayList<Drawable>();
         loadResources(pics);
-        m = new Motor(25, matrix, picsize,pics,4,1);
+        m = new Motor(25, matrix, picsize,pics,3/*player*/,1);
         m.iniLevel(viewWidth,viewHeight);
 
         mainview.setOnTouchListener(new View.OnTouchListener() {
@@ -229,8 +229,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         m.changeOrientation(4);
                     }
                 }
-
-
             }
             public void onFinish() {
 
@@ -280,9 +278,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void loadResources(ArrayList<Drawable> pics) {
         pics.add(getResources().getDrawable(R.drawable.red_player));
+        pics.add(getResources().getDrawable(R.drawable.redplayerrotation90));
+        pics.add(getResources().getDrawable(R.drawable.redplayerrotation180));
+        pics.add(getResources().getDrawable(R.drawable.redplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.green_player));
+        pics.add(getResources().getDrawable(R.drawable.greenplayerrotation90));
+        pics.add(getResources().getDrawable(R.drawable.greenplayerrotation180));
+        pics.add(getResources().getDrawable(R.drawable.greenplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.blue_player));
+        pics.add(getResources().getDrawable(R.drawable.blueplayerrotation90));
+        pics.add(getResources().getDrawable(R.drawable.blueplayerrotation180));
+        pics.add(getResources().getDrawable(R.drawable.blueplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.yellow_player));
+        pics.add(getResources().getDrawable(R.drawable.yellowplayerrotation90));
+        pics.add(getResources().getDrawable(R.drawable.yellowplayerrotation180));
+        pics.add(getResources().getDrawable(R.drawable.yellowplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.button));
         pics.add(getResources().getDrawable(R.drawable.spikes));
         pics.add(getResources().getDrawable(R.drawable.door));
@@ -294,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         pics.add(getResources().getDrawable(R.drawable.ground_block2));
         pics.add(getResources().getDrawable(R.drawable.cloud_block));
         pics.add(getResources().getDrawable(R.drawable.dirt_block));
+
     }
 
     class levelView extends View {

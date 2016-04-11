@@ -35,7 +35,6 @@ public class Motor {
     private int [][] verticalmatrix;
     private int [][] dualhorizontalmatrix;
     private int [][] dualverticalmatrix;
-    private Collidable [][] collidableList;
     private ArrayList<CompanionCube> companion;
     private int picsize;
     private Player player;
@@ -45,6 +44,7 @@ public class Motor {
     private int id_color;
     private int orientation;
     private int gravityabsolutevalue;
+    private ArrayList<Collidable> dynamicItems;
 
 
     public Motor(int g, int [][] mat,int picsize,ArrayList<Drawable> drawable,int id_color,int orientation){
@@ -54,12 +54,11 @@ public class Motor {
         dualverticalmatrix = new int[26][15];
         this.picsize = picsize;
         this.drawable = drawable;
-        collidableList = new Collidable[15][26];
         this.id_color = id_color;
         this.orientation = orientation;
         gravityabsolutevalue = g;
         companion = new ArrayList<CompanionCube>();
-
+        dynamicItems = new ArrayList<Collidable>();
         for(int i=0;i<horizontalmatrix.length;i++){
             for(int j=0;j<horizontalmatrix[i].length;j++){
                 dualhorizontalmatrix[horizontalmatrix.length-(i+1)][horizontalmatrix[i].length-(j+1)] = horizontalmatrix[i][j];
@@ -70,8 +69,8 @@ public class Motor {
 
     }
 
-    public void iniLevel(int h,int w){
-        ground = new Canvas();
+    public void iniLevel(int w,int h){
+        Collidable [][] collidableList = new Collidable[15][26];
         for(int i=0;i<horizontalmatrix.length;i++){
             for(int j=0;j<horizontalmatrix[0].length;j++){
                 switch(horizontalmatrix[i][j]){
@@ -82,47 +81,53 @@ public class Motor {
                     case 2:
                     case 3:
                     case 4:
-                        collidableList[i][j] = new Player(i,j,1,1,horizontalmatrix[i][j],0,0,drawable.get(horizontalmatrix[i][j]-1),this.orientation);
+                        dynamicItems.add(new Player(i,j,1,1,horizontalmatrix[i][j],0,0,this.orientation,
+                                drawable.get((horizontalmatrix[i][j]-1)*4),
+                                drawable.get((horizontalmatrix[i][j]-1)*4+1),
+                                drawable.get((horizontalmatrix[i][j]-1)*4+2),
+                                drawable.get((horizontalmatrix[i][j]-1)*4+3)));
                         if(id_color == horizontalmatrix[i][j]) {
-                            player = (Player) collidableList[i][j];
+                            player = (Player) dynamicItems.get(dynamicItems.size()-1);
                         }
                         break;
                     //Botones
                     case 5:
-                        collidableList[i][j] = new Collidable(i,j,1,0.5,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
+                        collidableList[i][j] = new Collidable(i,j,1,0.5,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
                         break;
                     //Pinchos
                     case 6:
-                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
+                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
                         break;
                     //Puerta
                     case 7:
-                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
+                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
                         break;
                     //Companion cube
                     case 8:
                     case 9:
                     case 10:
                     case 11:
-                        collidableList[i][j] = new CompanionCube(i,j,1,1,horizontalmatrix[i][j]-7,0,0,drawable.get(horizontalmatrix[i][j]-1),orientation);
+                        dynamicItems.add(new CompanionCube(i,j,1,1,horizontalmatrix[i][j]-7,0,0,drawable.get(horizontalmatrix[i][j]+11),orientation));
                         if(horizontalmatrix[i][j]-7==id_color){
-                            companion.add((CompanionCube) collidableList[i][j]);
+                            companion.add((CompanionCube) dynamicItems.get(dynamicItems.size()-1));
                         }
                         break;
                     default:
                         if(horizontalmatrix[i][j]!=0){
-                            collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
+                            collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
                         }
                         break;
                 }
 
             }
         }
-        ground.drawARGB(255, 225, 225, 255);
-        for(int i=0;i<horizontalmatrix.length;i++) {
-            for (int j = 0; j < horizontalmatrix[0].length; j++) {
+
+        groundB = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas workingDrawing = new Canvas(groundB);
+        for(int i=0;i<collidableList.length;i++) {
+            for (int j = 0; j < collidableList[0].length; j++) {
                 if(collidableList[i][j]!=null) {
-                    collidableList[i][j].draw(picsize,ground);
+                    collidableList[i][j].draw(picsize, workingDrawing);
                 }
             }
         }
@@ -143,18 +148,16 @@ public class Motor {
 
     public void draw(Canvas c){
         c.drawARGB(255, 225, 225, 255);
-        for(int i=0;i<collidableList.length;i++) {
-            for (int j = 0; j < collidableList[0].length; j++) {
-                if(collidableList[i][j]!=null) {
-                    collidableList[i][j].draw(picsize, c);
-                }
-            }
+        c.drawBitmap(groundB, 0.0f, 0.0f, null);
+        for(int i=0;i<dynamicItems.size();i++){
+            dynamicItems.get(i).draw(picsize,c);
         }
-
+        /*
         c.drawText(Double.toString(player.getx()),50,70,new Paint(Color.BLACK));
         c.drawText(Double.toString(player.gety()),50,90,new Paint(Color.BLACK));
         c.drawText(Double.toString(player.getVelx()),50,110,new Paint(Color.BLACK));
         c.drawText(Double.toString(player.getVely()),50,130,new Paint(Color.BLACK));
+        */
     }
 
     public void motorAction(int action){
@@ -260,6 +263,13 @@ public class Motor {
     }
 
     public void changeOrientation(int or){
+        boolean fall = false;
+        for(int i=0;i<companion.size();i++){
+            fall = fall || companion.get(i).IsFalling();
+        }
+        if(fall || player.isJumping()){
+            return ;
+        }
         if(or > 4){
             or=1;
         }else if(or < 1){

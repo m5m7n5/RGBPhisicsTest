@@ -1,8 +1,11 @@
 package marcos_buenacasa_lpez.rgbphisicstest;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RotateDrawable;
+import android.os.Build;
 
 /**
  * Created by Marcos on 15/03/2016.

@@ -3,6 +3,8 @@ package marcos_buenacasa_lpez.rgbphisicstest;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Marcos on 21/03/2016.
  */
@@ -12,10 +14,16 @@ public class Player extends Collidable{
     private boolean moving = false;
     private int orientation;
     private int jumpheight = 8;
+    private ArrayList<Drawable> drawPics;
 
-    public Player(int x, int y, int w, int h, int id_color, int velx, int vely, Drawable d,int orientation){
-        super(x,y,w,h,id_color,velx,vely,d);
+    public Player(int x, int y, int w, int h, int id_color, int velx, int vely,int orientation, Drawable d1,Drawable d2,Drawable d3,Drawable d4){
+        super(x,y,w,h,id_color,velx,vely,null);
         this.orientation = orientation;
+        drawPics = new ArrayList<Drawable>();
+        drawPics.add(d1);
+        drawPics.add(d4);
+        drawPics.add(d3);
+        drawPics.add(d2);
     }
 
     public void changeOrientation(int orientation){
@@ -65,7 +73,7 @@ public class Player extends Collidable{
         this.orientation = orientation;
     }
 
-    public void update(int dt,int g){
+    public void update(int dt,int g)    {
         /*
         if(!jumping){
             double x = this.getx() + this.getVelx()*(1.0/dt);
@@ -87,24 +95,32 @@ public class Player extends Collidable{
     }
 
     public void draw(int picsize,Canvas c){
-        Drawable picture = this.getPicture();
         double[] oldcoord = {this.getx(), this.gety()};
         double[] newcoord = oldcoord;
         switch(orientation){
+            case 1:
+                drawPics.get(0).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
+                drawPics.get(0).draw(c);
+                break;
             case 2:
                 newcoord = rotateVH(oldcoord);
+                drawPics.get(1).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
+                drawPics.get(1).draw(c);
                 break;
             case 3:
                 newcoord = rotateVH(rotateHV(oldcoord));
+                drawPics.get(2).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
+                drawPics.get(2).draw(c);
                 break;
             case 4:
                 newcoord = rotateVH(rotateHV(rotateVH(oldcoord)));
+                drawPics.get(3).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
+                drawPics.get(3).draw(c);
                 break;
             default:
                 break;
         }
-        picture.setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
-        picture.draw(c);
+
     }
 
     public void moveRight(){
