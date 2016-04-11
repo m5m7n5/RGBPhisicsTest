@@ -36,6 +36,7 @@ public class Motor {
     private int [][] dualhorizontalmatrix;
     private int [][] dualverticalmatrix;
     private Collidable [][] collidableList;
+    private ArrayList<CompanionCube> companion;
     private int picsize;
     private Player player;
     private ArrayList<Drawable> drawable;
@@ -57,6 +58,7 @@ public class Motor {
         this.id_color = id_color;
         this.orientation = orientation;
         gravityabsolutevalue = g;
+        companion = new ArrayList<CompanionCube>();
 
         for(int i=0;i<horizontalmatrix.length;i++){
             for(int j=0;j<horizontalmatrix[i].length;j++){
@@ -102,7 +104,10 @@ public class Motor {
                     case 9:
                     case 10:
                     case 11:
-                        collidableList[i][j] = new Collidable(i,j,1,1,horizontalmatrix[i][j]-7,0,0,drawable.get(horizontalmatrix[i][j]-1));
+                        collidableList[i][j] = new CompanionCube(i,j,1,1,horizontalmatrix[i][j]-7,0,0,drawable.get(horizontalmatrix[i][j]-1),orientation);
+                        if(horizontalmatrix[i][j]-7==id_color){
+                            companion.add((CompanionCube) collidableList[i][j]);
+                        }
                         break;
                     default:
                         if(horizontalmatrix[i][j]!=0){
@@ -123,9 +128,13 @@ public class Motor {
         }
     }
 
-    public void phisics(int dt){
-        player.update(dt,gravityabsolutevalue,orientation);
+    public void physics(int dt){
+        player.update(dt,gravityabsolutevalue);
         staticCollitions(player);
+        for(int i=0;i<companion.size();i++){
+            companion.get(i).update(dt,gravityabsolutevalue);
+            companionCollitions(companion.get(i));
+        }
     }
 
     public void logic(){
@@ -224,6 +233,28 @@ public class Motor {
         }
     }
 
+    private void companionCollitions(CompanionCube c){
+        boolean[] vertex = calculateVertex(c);
+        if(c.IsFalling()){
+            if(vertex[2]||vertex[3]){
+                c.setPos((int)(c.getx()),(int)(c.gety()));
+                c.setVel(0,0);
+                c.stopFalling();
+            }
+        }else{
+            if((!vertex[2])&&(!vertex[3])){
+                c.startFalling();
+            }else if(vertex[0]){
+                //Vibra cuando toca la pared
+                c.setPos((int)(c.getx()),(int)(c.gety()+1));
+            }else if(vertex[1]){
+                //Vibra cuando toca la pared
+                c.setPos((int)(c.getx()),(int)(c.gety()));
+            }
+
+        }
+    }
+
     public int getOrientation(){
         return orientation;
     }
@@ -236,11 +267,16 @@ public class Motor {
         }
         orientation = or;
         player.changeOrientation(or);
+        for(int i=0;i<companion.size();i++){
+            companion.get(i).changeOrientation(or);
+        }
     }
+
     /*************************************/
     //Métodos de las colisiones estáticas//
+    /*************************************/
     private void rightBotVel(Player player){
-        boolean[] vertex = calculateVertex();
+        boolean[] vertex = calculateVertex(player);
             if (vertex[1] && vertex[3]) {
                 player.setPos((int) (player.getx()), (int) (player.gety()));
                 player.setVel(0, 0);
@@ -248,10 +284,6 @@ public class Motor {
             } else if (vertex[1]) {
                 player.setPos((player.getx()), (int) (player.gety()));
                 player.setVel(player.getVelx(), 0);
-                if (player.isJumping()) {
-                    player.setVel(0, 0);
-                    player.stopJumping();
-                }
 
             } else if (vertex[3]) {
                 player.setPos((int) (player.getx()), (player.gety()));
@@ -278,7 +310,7 @@ public class Motor {
     }
 
     private void rightTopVel(Player player){
-        boolean[] vertex = calculateVertex();
+        boolean[] vertex = calculateVertex(player);
         if(vertex[0] && vertex[2]){
             player.setPos((int)(player.getx()),(int)(player.gety()));
         }else if(vertex[0]){
@@ -299,7 +331,7 @@ public class Motor {
     }
 
     private void leftBotVel(Player player){
-        boolean[] vertex = calculateVertex();
+        boolean[] vertex = calculateVertex(player);
         if(vertex[0] && vertex[2]){
             player.setPos((int)(player.getx()),(int)(player.gety()+1));
             player.setVel(0,0);
@@ -307,10 +339,7 @@ public class Motor {
         }else if(vertex[0]){
             player.setPos((player.getx()),(int)(player.gety()+1));
             player.setVel(player.getVelx(),0);
-            if (player.isJumping()) {
-                player.setVel(0, 0);
-                player.stopJumping();
-            }
+
         }else if(vertex[2]){
             player.setPos((int)(player.getx()),(player.gety()));
             player.setVel(0,player.getVely());
@@ -335,7 +364,7 @@ public class Motor {
     }
 
     private void leftTopVel(Player player){
-        boolean[] vertex = calculateVertex();
+        boolean[] vertex = calculateVertex(player);
         if(vertex[1] && vertex[3]){
             player.setPos((int)(player.getx()+1),(int)(player.gety()));
         }else if(vertex[1]){
@@ -356,21 +385,23 @@ public class Motor {
     }
 
     private void leftVel(Player player){
-        boolean[] vertex = calculateVertex();
-        if(vertex[0]){
+        boolean[] vertex = calculateVertex(player);
+        if(vertex[0] && !vertex[3]){
+            //Vibra cuando toca la pared
             player.setPos((int)(player.getx()),(int)(player.gety()+1));
         }
     }
 
     private void rightVel(Player player){
-        boolean[] vertex = calculateVertex();
-        if(vertex[1]){
+        boolean[] vertex = calculateVertex(player);
+        if(vertex[1] && !vertex[2]){
+            //Vibra cuando toca la pared
             player.setPos((int)(player.getx()),(int)(player.gety()));
         }
     }
 
     private void topVel(Player player){
-        boolean[] vertex = calculateVertex();
+        boolean[] vertex = calculateVertex(player);
         if(vertex[0]){
             player.setPos((int)(player.getx())+1,(player.gety()));
             player.setVel(0,0);
@@ -381,7 +412,7 @@ public class Motor {
     }
 
     private void botVel(Player player){
-        boolean[] vertex = calculateVertex();
+        boolean[] vertex = calculateVertex(player);
         if(vertex[3]){
             player.setPos((int)(player.getx()),(player.gety()));
             player.setVel(0,0);
@@ -393,7 +424,7 @@ public class Motor {
         }
     }
 
-    private boolean[] calculateVertex(){
+    private boolean[] calculateVertex(Collidable player){
         boolean[] vertex = new boolean[4];
         switch(orientation){
             case 1:

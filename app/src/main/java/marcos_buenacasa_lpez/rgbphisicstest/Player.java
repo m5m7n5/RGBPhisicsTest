@@ -65,7 +65,7 @@ public class Player extends Collidable{
         this.orientation = orientation;
     }
 
-    public void update(int dt,int g,int orientation){
+    public void update(int dt,int g){
         /*
         if(!jumping){
             double x = this.getx() + this.getVelx()*(1.0/dt);
