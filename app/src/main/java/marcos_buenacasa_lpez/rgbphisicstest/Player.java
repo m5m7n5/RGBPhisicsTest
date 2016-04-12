@@ -1,5 +1,6 @@
 package marcos_buenacasa_lpez.rgbphisicstest;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
@@ -15,15 +16,42 @@ public class Player extends Collidable{
     private int orientation;
     private int jumpheight = 8;
     private ArrayList<Drawable> drawPics;
+    private ArrayList<Bitmap> drawBPics;
 
-    public Player(int x, int y, int w, int h, int id_color, int velx, int vely,int orientation, Drawable d1,Drawable d2,Drawable d3,Drawable d4){
+    public Player(int x, int y, int w, int h, int id_color, int velx, int vely,int orientation,int picsize, Drawable d){
         super(x,y,w,h,id_color,velx,vely,null);
         this.orientation = orientation;
         drawPics = new ArrayList<Drawable>();
-        drawPics.add(d1);
-        drawPics.add(d4);
-        drawPics.add(d3);
-        drawPics.add(d2);
+        drawBPics = new ArrayList<Bitmap>();
+        Bitmap aux = Bitmap.createBitmap(picsize, picsize, Bitmap.Config.ARGB_8888);
+        Canvas wD/*workingDrawing*/ = new Canvas(aux);
+        d.setBounds(0,0,picsize,picsize);
+        d.draw(wD);
+        drawBPics.add(aux);
+
+        aux = Bitmap.createBitmap(picsize, picsize, Bitmap.Config.ARGB_8888);
+        wD = new Canvas(aux);
+        wD.save();
+        wD.rotate(270,picsize/2,picsize/2);
+        d.draw(wD);
+        wD.restore();
+        drawBPics.add(aux);
+
+        aux = Bitmap.createBitmap(picsize, picsize, Bitmap.Config.ARGB_8888);
+        wD = new Canvas(aux);
+        wD.save();
+        wD.rotate(180,picsize/2,picsize/2);
+        d.draw(wD);
+        wD.restore();
+        drawBPics.add(aux);
+
+        aux = Bitmap.createBitmap(picsize, picsize, Bitmap.Config.ARGB_8888);
+        wD = new Canvas(aux);
+        wD.save();
+        wD.rotate(90,picsize/2,picsize/2);
+        d.draw(wD);
+        wD.restore();
+        drawBPics.add(aux);
     }
 
     public void changeOrientation(int orientation){
@@ -99,23 +127,19 @@ public class Player extends Collidable{
         double[] newcoord = oldcoord;
         switch(orientation){
             case 1:
-                drawPics.get(0).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
-                drawPics.get(0).draw(c);
+                c.drawBitmap(drawBPics.get(0),(int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),null);
                 break;
             case 2:
                 newcoord = rotateVH(oldcoord);
-                drawPics.get(1).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
-                drawPics.get(1).draw(c);
+                c.drawBitmap(drawBPics.get(1),(int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),null);
                 break;
             case 3:
                 newcoord = rotateVH(rotateHV(oldcoord));
-                drawPics.get(2).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
-                drawPics.get(2).draw(c);
+                c.drawBitmap(drawBPics.get(2),(int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),null);
                 break;
             case 4:
                 newcoord = rotateVH(rotateHV(rotateVH(oldcoord)));
-                drawPics.get(3).setBounds((int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),(int)((newcoord[1]+1)*picsize),(int)((newcoord[0]+1)*picsize));
-                drawPics.get(3).draw(c);
+                c.drawBitmap(drawBPics.get(3),(int)(newcoord[1]*picsize),(int)(newcoord[0]*picsize),null);
                 break;
             default:
                 break;
@@ -176,4 +200,9 @@ public class Player extends Collidable{
     public boolean isMoving() {
         return moving;
     }
+
+    public void startJumping() {
+        jumping = true;
+    }
+
 }

@@ -45,6 +45,7 @@ public class Motor {
     private int orientation;
     private int gravityabsolutevalue;
     private ArrayList<Collidable> dynamicItems;
+    private int rotations;
 
 
     public Motor(int g, int [][] mat,int picsize,ArrayList<Drawable> drawable,int id_color,int orientation){
@@ -59,6 +60,7 @@ public class Motor {
         gravityabsolutevalue = g;
         companion = new ArrayList<CompanionCube>();
         dynamicItems = new ArrayList<Collidable>();
+        rotations = 0;
         for(int i=0;i<horizontalmatrix.length;i++){
             for(int j=0;j<horizontalmatrix[i].length;j++){
                 dualhorizontalmatrix[horizontalmatrix.length-(i+1)][horizontalmatrix[i].length-(j+1)] = horizontalmatrix[i][j];
@@ -81,40 +83,36 @@ public class Motor {
                     case 2:
                     case 3:
                     case 4:
-                        dynamicItems.add(new Player(i,j,1,1,horizontalmatrix[i][j],0,0,this.orientation,
-                                drawable.get((horizontalmatrix[i][j]-1)*4),
-                                drawable.get((horizontalmatrix[i][j]-1)*4+1),
-                                drawable.get((horizontalmatrix[i][j]-1)*4+2),
-                                drawable.get((horizontalmatrix[i][j]-1)*4+3)));
+                        dynamicItems.add(new Player(i,j,1,1,horizontalmatrix[i][j],0,0,this.orientation,picsize,drawable.get(horizontalmatrix[i][j]-1)));
                         if(id_color == horizontalmatrix[i][j]) {
                             player = (Player) dynamicItems.get(dynamicItems.size()-1);
                         }
                         break;
                     //Botones
                     case 5:
-                        collidableList[i][j] = new Collidable(i,j,1,0.5,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
+                        collidableList[i][j] = new Collidable(i,j,1,0.5,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
                         break;
                     //Pinchos
                     case 6:
-                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
+                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
                         break;
                     //Puerta
                     case 7:
-                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
+                        collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
                         break;
                     //Companion cube
                     case 8:
                     case 9:
                     case 10:
                     case 11:
-                        dynamicItems.add(new CompanionCube(i,j,1,1,horizontalmatrix[i][j]-7,0,0,drawable.get(horizontalmatrix[i][j]+11),orientation));
+                        dynamicItems.add(new CompanionCube(i,j,1,1,horizontalmatrix[i][j]-7,0,0,drawable.get(horizontalmatrix[i][j]-1),orientation));
                         if(horizontalmatrix[i][j]-7==id_color){
                             companion.add((CompanionCube) dynamicItems.get(dynamicItems.size()-1));
                         }
                         break;
                     default:
                         if(horizontalmatrix[i][j]!=0){
-                            collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]+11));
+                            collidableList[i][j] = new Collidable(i,j,1,1,0,0,0,drawable.get(horizontalmatrix[i][j]-1));
                         }
                         break;
                 }
@@ -144,6 +142,10 @@ public class Motor {
 
     public void logic(){
 
+    }
+
+    public int getRotations(){
+        return rotations;
     }
 
     public void draw(Canvas c){
@@ -277,9 +279,11 @@ public class Motor {
         }
         orientation = or;
         player.changeOrientation(or);
+        player.startJumping();
         for(int i=0;i<companion.size();i++){
             companion.get(i).changeOrientation(or);
         }
+        rotations++;
     }
 
     /*************************************/

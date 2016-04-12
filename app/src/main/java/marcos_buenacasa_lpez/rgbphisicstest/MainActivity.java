@@ -278,21 +278,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void loadResources(ArrayList<Drawable> pics) {
         pics.add(getResources().getDrawable(R.drawable.red_player));
-        pics.add(getResources().getDrawable(R.drawable.redplayerrotation90));
-        pics.add(getResources().getDrawable(R.drawable.redplayerrotation180));
-        pics.add(getResources().getDrawable(R.drawable.redplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.green_player));
-        pics.add(getResources().getDrawable(R.drawable.greenplayerrotation90));
-        pics.add(getResources().getDrawable(R.drawable.greenplayerrotation180));
-        pics.add(getResources().getDrawable(R.drawable.greenplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.blue_player));
-        pics.add(getResources().getDrawable(R.drawable.blueplayerrotation90));
-        pics.add(getResources().getDrawable(R.drawable.blueplayerrotation180));
-        pics.add(getResources().getDrawable(R.drawable.blueplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.yellow_player));
-        pics.add(getResources().getDrawable(R.drawable.yellowplayerrotation90));
-        pics.add(getResources().getDrawable(R.drawable.yellowplayerrotation180));
-        pics.add(getResources().getDrawable(R.drawable.yellowplayerrotation270));
         pics.add(getResources().getDrawable(R.drawable.button));
         pics.add(getResources().getDrawable(R.drawable.spikes));
         pics.add(getResources().getDrawable(R.drawable.door));

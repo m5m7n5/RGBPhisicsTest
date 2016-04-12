@@ -53,6 +53,7 @@ public class Collidable {
     }
 
     public void draw(int picsize,Canvas c){
+
         picture.setBounds((int)(y*picsize),(int)(x*picsize),(int)((y+1)*picsize),(int)((x+1)*picsize));
         picture.draw(c);
     }
