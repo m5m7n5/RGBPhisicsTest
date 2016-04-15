@@ -102,14 +102,17 @@ public class Player extends Collidable{
     }
 
     public void update(int dt,int g)    {
-        if (!jumping) {
-            if (moveDirection == MoveDirection.LEFT) {
-                this.setVel(getVelx(), -5);
-            } else if (moveDirection == MoveDirection.NONE) {
-                this.setVel(getVelx(), 0);
-            } else if (moveDirection == MoveDirection.RIGHT) {
-                this.setVel(getVelx(), 5);
-            }
+        // Update the player speed from its movement direction every frame, since the player
+        // may lose speed each frame, e.g. by running into a wall
+        // There's also an useful feature implemented here which is a 'super jump', in which
+        // if the player is simultaneously moving in the same direction he's jumping,
+        // the jump will cover a greater distance than a regular jump
+        if (moveDirection == MoveDirection.LEFT && (!jumping || (jumping && getVely() < 0))) {
+            this.setVel(getVelx(), -5);
+        } else if (moveDirection == MoveDirection.NONE && !jumping) {
+            this.setVel(getVelx(), 0);
+        } else if (moveDirection == MoveDirection.RIGHT && (!jumping || (jumping && getVely() > 0))) {
+            this.setVel(getVelx(), 5);
         }
         /*
         if(!jumping){
