@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -90,18 +91,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mainview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                float x = event.getX();
-                float y = event.getY();
+                int actionIdx = MotionEventCompat.getActionIndex(event);
+                int action = MotionEventCompat.getActionMasked(event);
+
+                float x = MotionEventCompat.getX(event, actionIdx);
+                float y = MotionEventCompat.getY(event, actionIdx);
                 v.invalidate();
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                if(action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN){
                     switch(m.getOrientation()) {
                         case 1:
                             if (viewHeight / 2 < y) {
                                 if (viewWidth / 3 > x) {
                                     //Abajo izquierda
+                                    m.motorAction(0);
                                     m.motorAction(2);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Abajo derecha
+                                    m.motorAction(0);
                                     m.motorAction(1);
                                 } else if((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3){
                                     //Ejecutar cambio de rotacion
@@ -125,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 > x){
                                     m.motorAction(4);
                                 }else{
+                                    m.motorAction(0);
                                     m.motorAction(1);
                                 }
                             }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
@@ -137,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 > x){
                                     m.motorAction(5);
                                 }else{
+                                    m.motorAction(0);
                                     m.motorAction(2);
                                 }
                             }
@@ -159,9 +168,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     //m.motorAction(6);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Arriba derecha
+                                    m.motorAction(0);
                                     m.motorAction(2);
                                 } else if (x <= (viewWidth / 3)) {
                                     //Arriba izquierda
+                                    m.motorAction(0);
                                     m.motorAction(1);
 
                                 }
@@ -172,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 < x){
                                     m.motorAction(5);
                                 }else{
+                                    m.motorAction(0);
                                     m.motorAction(2);
                                 }
                             }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
@@ -184,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 < x){
                                     m.motorAction(4);
                                 }else{
+                                    m.motorAction(0);
                                     m.motorAction(1);
                                 }
                             }
@@ -192,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             break;
                     }
                     return true;
-                }else if(event.getAction() == MotionEvent.ACTION_UP) {
+                }else if(action == MotionEvent.ACTION_UP) {
                     m.motorAction(0);
                     return true;
             }
