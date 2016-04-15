@@ -13,7 +13,7 @@ public class Player extends Collidable{
 
     private boolean jumping = false;
     private int orientation;
-    private int moveDirection = 0;
+    private MoveDirection moveDirection = MoveDirection.NONE;
     private int jumpheight = 8;
     private ArrayList<Drawable> drawPics;
     private ArrayList<Bitmap> drawBPics;
@@ -103,7 +103,13 @@ public class Player extends Collidable{
 
     public void update(int dt,int g)    {
         if (!jumping) {
-            this.setVel(getVelx(), moveDirection * 5);
+            if (moveDirection == MoveDirection.LEFT) {
+                this.setVel(getVelx(), -5);
+            } else if (moveDirection == MoveDirection.NONE) {
+                this.setVel(getVelx(), 0);
+            } else if (moveDirection == MoveDirection.RIGHT) {
+                this.setVel(getVelx(), 5);
+            }
         }
         /*
         if(!jumping){
@@ -151,15 +157,15 @@ public class Player extends Collidable{
     }
 
     public void moveRight(){
-        moveDirection = 1;
+        moveDirection = MoveDirection.RIGHT;
     }
 
     public void moveLeft(){
-        moveDirection = -1;
+        moveDirection = MoveDirection.LEFT;
     }
 
     public void stopMoving(){
-        moveDirection = 0;
+        moveDirection = MoveDirection.NONE;
     }
 
     public void jumpRight(){
@@ -192,7 +198,7 @@ public class Player extends Collidable{
     }
 
     public boolean isMoving() {
-        return moveDirection != 0;
+        return moveDirection != MoveDirection.NONE;
     }
 
     public void startJumping() {
