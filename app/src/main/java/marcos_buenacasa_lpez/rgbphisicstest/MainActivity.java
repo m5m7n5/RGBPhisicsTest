@@ -17,16 +17,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import java.util.List;
-
-
-
-
-
-
-
-
-
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
@@ -39,6 +31,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private float prevx,prevy = 0;
     private float curx,cury= 0;
 
+    /**
+     * Keeps track of the pointer IDs that are currently pressing a part of the screen related
+     * to the player movement on the game.
+     * The keys of this map are the pointer IDs, and the values of the map are their
+     * associated movement direction.
+     */
+    private TreeMap<Integer, MoveDirection> activeMoveTouchPointers = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int actionIdx = MotionEventCompat.getActionIndex(event);
+                int actionId = MotionEventCompat.getPointerId(event, actionIdx);
                 int action = MotionEventCompat.getActionMasked(event);
 
                 float x = MotionEventCompat.getX(event, actionIdx);
@@ -104,11 +104,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             if (viewHeight / 2 < y) {
                                 if (viewWidth / 3 > x) {
                                     //Abajo izquierda
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Abajo derecha
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
                                 } else if((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3){
                                     //Ejecutar cambio de rotacion
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 > x){
                                     m.motorAction(4);
                                 }else{
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
                                 }
                             }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 > x){
                                     m.motorAction(5);
                                 }else{
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 }
                             }
@@ -168,11 +168,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     //m.motorAction(6);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Arriba derecha
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 } else if (x <= (viewWidth / 3)) {
                                     //Arriba izquierda
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
 
                                 }
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 < x){
                                     m.motorAction(5);
                                 }else{
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 }
                             }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 < x){
                                     m.motorAction(4);
                                 }else{
-                                    m.motorAction(0);
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
                                 }
                             }
@@ -205,10 +205,31 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                             break;
                     }
                     return true;
-                }else if(action == MotionEvent.ACTION_UP) {
-                    m.motorAction(0);
+                }else if(action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
+                    // The user has released one of the touch pointers. If it is one of the
+                    // pointers associated to the areas of the screen related to movement,
+                    // we need to restore the other pressed movement direction, if there are
+                    // multiple pressed at the same time. The last pressed direction wins.
+                    if (activeMoveTouchPointers.containsKey(actionId)) {
+                        activeMoveTouchPointers.remove(actionId);
+
+                        if (activeMoveTouchPointers.size() > 0) {
+                            // Restore the movement direction related to the other active pointer
+                            switch (activeMoveTouchPointers.lastEntry().getValue()) {
+                                case LEFT:
+                                    m.motorAction(2);
+                                    break;
+                                case RIGHT:
+                                    m.motorAction(1);
+                                    break;
+                            }
+                        } else {
+                            // No more active movement pointers active, stop the player.
+                            m.motorAction(0);
+                        }
+                    }
                     return true;
-            }
+                }
                 return false;
             }
         });
