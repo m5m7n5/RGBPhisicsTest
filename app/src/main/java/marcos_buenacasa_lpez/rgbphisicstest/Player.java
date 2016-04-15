@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class Player extends Collidable{
 
     private boolean jumping = false;
-    private boolean moving = false;
     private int orientation;
+    private int moveDirection = 0;
     private int jumpheight = 8;
     private ArrayList<Drawable> drawPics;
     private ArrayList<Bitmap> drawBPics;
@@ -102,6 +102,9 @@ public class Player extends Collidable{
     }
 
     public void update(int dt,int g)    {
+        if (!jumping) {
+            this.setVel(getVelx(), moveDirection * 5);
+        }
         /*
         if(!jumping){
             double x = this.getx() + this.getVelx()*(1.0/dt);
@@ -148,24 +151,15 @@ public class Player extends Collidable{
     }
 
     public void moveRight(){
-        if(!moving){
-            this.setVel(getVelx(), 5);
-            moving = true;
-        }
+        moveDirection = 1;
     }
 
     public void moveLeft(){
-        if(!moving){
-            this.setVel(getVelx(), -5);
-            moving = true;
-        }
+        moveDirection = -1;
     }
 
     public void stopMoving(){
-        if(moving){
-            moving = false;
-            this.setVel(getVelx(),0);
-        }
+        moveDirection = 0;
     }
 
     public void jumpRight(){
@@ -198,7 +192,7 @@ public class Player extends Collidable{
     }
 
     public boolean isMoving() {
-        return moving;
+        return moveDirection != 0;
     }
 
     public void startJumping() {
