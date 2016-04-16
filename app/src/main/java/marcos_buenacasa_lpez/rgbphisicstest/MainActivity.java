@@ -1,6 +1,7 @@
 package marcos_buenacasa_lpez.rgbphisicstest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Motor m;
     private CountDownTimer bucle;
     private levelView mainview;
+    private SensorManager sensorManager;
     private int gametime;
     private int viewHeight;
     private int viewWidth;
@@ -204,6 +206,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         default:
                             break;
                     }
+
+                    if (activeMoveTouchPointers.size() >= 4 && !MainActivity.this.isFinishing()) {
+                        // Before terminating this activity, we need to cancel both the timing
+                        // loop and unregister the sensor manager loops, because otherwise, they
+                        // will keep running, wasting resources and preventing destruction
+                        // of the instance of the activity, easy resulting in a out-of-memory error
+                        bucle.cancel();
+                        sensorManager.unregisterListener(MainActivity.this);
+                        MainActivity.this.finish();
+
+                        // Pass the rating information to the rating activity
+                        Intent ratingIntent = new Intent(MainActivity.this, GameRatingActivity.class);
+                        ratingIntent.putExtra(GameRatingActivity.LEVEL_SET_KEY, 159753);
+                        ratingIntent.putExtra(GameRatingActivity.NUM_PLAYERS_KEY, 258456);
+                        ratingIntent.putExtra(GameRatingActivity.PLAYING_TIME_KEY, gametime / 1000);
+                        ratingIntent.putExtra(GameRatingActivity.NUM_TURNS_KEY, m.getRotations());
+                        startActivity(ratingIntent);
+                    }
+
                     return true;
                 }else if(action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
                     // The user has released one of the touch pointers. If it is one of the
@@ -230,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     }
                     return true;
                 }
+
                 return false;
             }
         });
@@ -270,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
 
         }.start();
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         List<Sensor> listSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
         checkSensors(listSensors, sensorManager);
 
