@@ -1,10 +1,12 @@
 package marcos_buenacasa_lpez.rgbphisicstest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -16,28 +18,28 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import java.util.List;
-
-
-
-
-
-
-
-
-
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
     private Motor m;
     private CountDownTimer bucle;
     private levelView mainview;
+    private SensorManager sensorManager;
     private int gametime;
     private int viewHeight;
     private int viewWidth;
     private float prevx,prevy = 0;
     private float curx,cury= 0;
 
+    /**
+     * Keeps track of the pointer IDs that are currently pressing a part of the screen related
+     * to the player movement on the game.
+     * The keys of this map are the pointer IDs, and the values of the map are their
+     * associated movement direction.
+     */
+    private TreeMap<Integer, MoveDirection> activeMoveTouchPointers = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,18 +92,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mainview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                float x = event.getX();
-                float y = event.getY();
+                int actionIdx = MotionEventCompat.getActionIndex(event);
+                int actionId = MotionEventCompat.getPointerId(event, actionIdx);
+                int action = MotionEventCompat.getActionMasked(event);
+
+                float x = MotionEventCompat.getX(event, actionIdx);
+                float y = MotionEventCompat.getY(event, actionIdx);
                 v.invalidate();
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                if(action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN){
                     switch(m.getOrientation()) {
                         case 1:
                             if (viewHeight / 2 < y) {
                                 if (viewWidth / 3 > x) {
                                     //Abajo izquierda
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Abajo derecha
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
                                 } else if((viewWidth) / 3 < x && x <= (2 * viewWidth) / 3){
                                     //Ejecutar cambio de rotacion
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 > x){
                                     m.motorAction(4);
                                 }else{
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
                                 }
                             }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
@@ -137,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 > x){
                                     m.motorAction(5);
                                 }else{
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 }
                             }
@@ -159,9 +170,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                     //m.motorAction(6);
                                 } else if ((2 * viewWidth) / 3 < x) {
                                     //Arriba derecha
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 } else if (x <= (viewWidth / 3)) {
                                     //Arriba izquierda
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
 
                                 }
@@ -172,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 < x){
                                     m.motorAction(5);
                                 }else{
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.LEFT);
                                     m.motorAction(2);
                                 }
                             }else if(viewHeight/3 < y && (2*viewHeight)/3 > y){
@@ -184,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 if(viewWidth/2 < x){
                                     m.motorAction(4);
                                 }else{
+                                    activeMoveTouchPointers.put(actionId, MoveDirection.RIGHT);
                                     m.motorAction(1);
                                 }
                             }
@@ -191,11 +206,52 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         default:
                             break;
                     }
+
+                    if (activeMoveTouchPointers.size() >= 4 && !MainActivity.this.isFinishing()) {
+                        // Before terminating this activity, we need to cancel both the timing
+                        // loop and unregister the sensor manager loops, because otherwise, they
+                        // will keep running, wasting resources and preventing destruction
+                        // of the instance of the activity, easy resulting in a out-of-memory error
+                        bucle.cancel();
+                        sensorManager.unregisterListener(MainActivity.this);
+                        MainActivity.this.finish();
+
+                        // Pass the rating information to the rating activity
+                        Intent ratingIntent = new Intent(MainActivity.this, GameRatingActivity.class);
+                        ratingIntent.putExtra(GameRatingActivity.LEVEL_SET_KEY, 159753);
+                        ratingIntent.putExtra(GameRatingActivity.NUM_PLAYERS_KEY, 258456);
+                        ratingIntent.putExtra(GameRatingActivity.PLAYING_TIME_KEY, gametime / 1000);
+                        ratingIntent.putExtra(GameRatingActivity.NUM_TURNS_KEY, m.getRotations());
+                        startActivity(ratingIntent);
+                    }
+
                     return true;
-                }else if(event.getAction() == MotionEvent.ACTION_UP) {
-                    m.motorAction(0);
+                }else if(action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
+                    // The user has released one of the touch pointers. If it is one of the
+                    // pointers associated to the areas of the screen related to movement,
+                    // we need to restore the other pressed movement direction, if there are
+                    // multiple pressed at the same time. The last pressed direction wins.
+                    if (activeMoveTouchPointers.containsKey(actionId)) {
+                        activeMoveTouchPointers.remove(actionId);
+
+                        if (activeMoveTouchPointers.size() > 0) {
+                            // Restore the movement direction related to the other active pointer
+                            switch (activeMoveTouchPointers.lastEntry().getValue()) {
+                                case LEFT:
+                                    m.motorAction(2);
+                                    break;
+                                case RIGHT:
+                                    m.motorAction(1);
+                                    break;
+                            }
+                        } else {
+                            // No more active movement pointers active, stop the player.
+                            m.motorAction(0);
+                        }
+                    }
                     return true;
-            }
+                }
+
                 return false;
             }
         });
@@ -236,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
 
         }.start();
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         List<Sensor> listSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
         checkSensors(listSensors, sensorManager);
 
